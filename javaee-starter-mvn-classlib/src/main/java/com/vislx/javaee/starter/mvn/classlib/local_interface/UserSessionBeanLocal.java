@@ -19,5 +19,7 @@ public interface UserSessionBeanLocal {
     public UserEntity createUser(String username, String email) throws Exception;
 
     public void deleteUserByUsername(String username) throws Exception;
+
+    public UserEntity updateUser(UserEntity changed) throws Exception;
     
 }

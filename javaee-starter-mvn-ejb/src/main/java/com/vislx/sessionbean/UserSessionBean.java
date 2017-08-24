@@ -62,4 +62,26 @@ public class UserSessionBean implements UserSessionBeanLocal {
         em.remove(u);
         em.flush();
     }
+    
+    @Override
+    public UserEntity updateUser(UserEntity changed) throws Exception{
+        Long id = changed.getId();
+        String username = changed.getUsername();
+        UserEntity original = em.find(UserEntity.class, id);
+        
+        
+        /**
+         * You need more validation here.
+         * In order to meet business logic requirements
+         */
+        if (changed.getEmail().length() > 0){
+            original.setEmail(changed.getEmail());
+            System.out.println("Email set:" + original.getEmail());
+        }
+        em.flush();
+        em.refresh(original);
+        em.flush();
+        
+        return original;
+    }
 }

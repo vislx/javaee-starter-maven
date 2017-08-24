@@ -19,8 +19,8 @@ public class ResponseBodyBuilder {
     public static Map<String ,Object> buildObject(Object data){
         Map<String, Object> result = new HashMap<>();
         result.put("data", data);
-        result.put("status", 200);
         result.put("count", data == null ? 0 : 1);
+        result.put("status", 200);
         return result;
     }
     

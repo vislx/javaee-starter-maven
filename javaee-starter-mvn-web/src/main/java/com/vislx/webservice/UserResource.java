@@ -79,7 +79,6 @@ public class UserResource {
             UserEntity u = user_sb.createUser(username, email);
             return Response.ok(ResponseBodyBuilder.buildObject(u)).build();
         } catch (Exception ex){
-            ex.printStackTrace();
             return Response.ok(ResponseBodyBuilder.buildMessage(400, "create user failed")).build();
         }
     }
@@ -87,8 +86,14 @@ public class UserResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateUser(String content) {
-        return Response.ok(ResponseBodyBuilder.buildMessage(400, "not support yet")).build();
+    public Response updateUser(UserEntity changed) {
+        try{
+            UserEntity updated = user_sb.updateUser(changed);
+            return Response.ok(ResponseBodyBuilder.buildObject(updated)).build();
+        } catch (Exception ex) {
+            return Response.ok(ResponseBodyBuilder.buildMessage(400, "update user failed")).build();
+        }
+        
     }
     
     @DELETE
@@ -97,7 +102,7 @@ public class UserResource {
     public Response deleteUserbyUsername(@PathParam("username") String usernam) {
         try{
             user_sb.deleteUserByUsername(usernam);
-            return Response.ok("delete successfully!").build();
+            return Response.ok(ResponseBodyBuilder.buildMessage(200, "delete successfully!")).build();
         }catch (Exception ex){
             return Response.ok(ResponseBodyBuilder.buildMessage(400, "delete user failed")).build();
         }
