@@ -1,0 +1,1 @@
+# JavaEE quick-starter with Maven
