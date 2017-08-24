@@ -1,0 +1,5 @@
+.DS_Store
+javaee-starter-mvn-classlib/target/
+javaee-starter-mvn-ear/target/
+javaee-starter-mvn-ejb/target/
+javaee-starter-mvn-web/target/
